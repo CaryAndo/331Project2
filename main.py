@@ -80,7 +80,6 @@ def quick_sort_helper(alist, first, last):
 def partition(alist, first, last, pivot_position=0):
     swap(alist, first, pivot_position)
     pivot = alist[first]
-    #pivot = alist[first]
 
     i = first + 1
     j = last
@@ -140,6 +139,6 @@ if __name__ == '__main__':
     test = [54, 26, 93, 17, 77, 31, 44, 55, 20]
     #print('posit: ' + str(partition(test, 0, len(test)-1)))
     #print(test)
-    print('THE FUCKING WRONG ANSWER ONECE AGAIN IN MY LIFE IS: ' + str(quickselect(test, 0, len(test)-1, 0)))
+    print('THE KTH ELEMENT IS' + str(quickselect(test, 0, len(test)-1, 0)))
     #print(quickselect(alist, 2))
     print('\n\nsorted: ' + str(mergesort(test)))
