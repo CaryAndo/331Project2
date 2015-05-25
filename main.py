@@ -41,6 +41,7 @@ def mergesort(sort_me):
 
 
 def swap(array, a, b):
+    """ Swap two elements in an array, given the array and two indices to exchange """
     array[a], array[b] = array[b], array[a]
 
 
@@ -117,28 +118,41 @@ if __name__ == '__main__':
     print(linear_select(t, 3))
     print(quickselect_recursive(t, 0, len(t)-1, 3))
     print(mergesort(t)[3])
+    test_cases = [10, 50, 100, 250, 1000] + [10**i for i in range(4, 7)]
+    recursive_avg = []
+    iterative_avg = []
+    mm_avg = []
+    sort_avg = []
 
-    for i in range(1, 10):
-        length = 10 ** i
-        temp_array = random_list(length)
-        print("Array size: " + str(length))
+    for i in test_cases:
+        recursive_times = []
+        iterative_times = []
+        mm_times = []
+        sort_times = []
+
+        temp_array = random_list(i)
+        print("Array size: " + str(i))
         print("Selecting 1st element")
         a = time.time()
         y = quickselect_recursive(temp_array, 0, len(temp_array)-1, 0)
         b = time.time()
-        print("quickselect recursive took: " + str(b - a) + " seconds")
+        recursive_times.append((b-a)*1000)
+        print("quickselect recursive took: " + str((b - a)*1000) + " ms")
         a = time.time()
         y = quickselect_iterative(temp_array, 0, len(temp_array)-1, 0)
         b = time.time()
-        print("quickselect iterative took: " + str(b - a) + " seconds")
+        iterative_times.append((b-a)*1000)
+        print("quickselect iterative took: " + str((b - a)*1000) + " ms")
         a = time.time()
         z = linear_select(temp_array, 0)
         b = time.time()
-        print("MM approach took: " + str(b - a) + " seconds")
+        mm_times.append((b-a)*1000)
+        print("MM approach took: " + str((b - a)*1000) + " ms")
         a = time.time()
         x = mergesort(temp_array)[0]
         b = time.time()
-        print("Mergesort approach took: " + str(b - a) + " seconds")
+        sort_times.append((b-a)*1000)
+        print("Mergesort approach took: " + str((b - a)*1000) + " ms")
         print("")
 
         if x != y or y != z:
@@ -149,19 +163,23 @@ if __name__ == '__main__':
         a = time.time()
         y = quickselect_recursive(temp_array, 0, len(temp_array)-1, len(temp_array)//4)
         b = time.time()
-        print("quickselect_recursive took: " + str(b - a) + " seconds")
+        recursive_times.append((b-a)*1000)
+        print("quickselect_recursive took: " + str((b - a)*1000) + " ms")
         a = time.time()
         y = quickselect_iterative(temp_array, 0, len(temp_array)-1, len(temp_array)//4)
         b = time.time()
-        print("quickselect iterative took: " + str(b - a) + " seconds")
+        iterative_times.append((b-a)*1000)
+        print("quickselect iterative took: " + str((b - a)*1000) + " ms")
         a = time.time()
         z = linear_select(temp_array, len(temp_array)//4)
         b = time.time()
-        print("MM approach took: " + str(b - a) + " seconds")
+        mm_times.append((b-a)*1000)
+        print("MM approach took: " + str((b - a)*1000) + " ms")
         a = time.time()
         x = mergesort(temp_array)[len(temp_array)//4]
         b = time.time()
-        print("Mergesort approach took: " + str(b - a) + " seconds")
+        sort_times.append((b-a)*1000)
+        print("Mergesort approach took: " + str((b - a)*1000) + " ms")
         print("")
 
         if x != y or y != z:
@@ -172,19 +190,23 @@ if __name__ == '__main__':
         a = time.time()
         y = quickselect_recursive(temp_array, 0, len(temp_array)-1, len(temp_array)//2)
         b = time.time()
-        print("quickselect_recursive took: " + str(b - a) + " seconds")
+        recursive_times.append((b-a)*1000)
+        print("quickselect_recursive took: " + str((b - a)*1000) + " ms")
         a = time.time()
         y = quickselect_iterative(temp_array, 0, len(temp_array)-1, len(temp_array)//2)
         b = time.time()
-        print("quickselect iterative took: " + str(b - a) + " seconds")
+        iterative_times.append((b-a)*1000)
+        print("quickselect iterative took: " + str((b - a)*1000) + " ms")
         a = time.time()
         z = linear_select(temp_array, len(temp_array)//2)
         b = time.time()
-        print("MM approach took: " + str(b - a) + " seconds")
+        mm_times.append((b-a)*1000)
+        print("MM approach took: " + str((b - a)*1000) + " ms")
         a = time.time()
         x = mergesort(temp_array)[len(temp_array)//2]
         b = time.time()
-        print("Mergesort approach took: " + str(b - a) + " seconds")
+        sort_times.append((b-a)*1000)
+        print("Mergesort approach took: " + str((b - a)*1000) + " ms")
         print("")
 
         if x != y or y != z:
@@ -195,19 +217,23 @@ if __name__ == '__main__':
         a = time.time()
         y = quickselect_recursive(temp_array, 0, len(temp_array)-1, (3*len(temp_array))//4)
         b = time.time()
-        print("quickselect_recursive took: " + str(b - a) + " seconds")
+        recursive_times.append((b-a)*1000)
+        print("quickselect_recursive took: " + str((b - a)*1000) + " ms")
         a = time.time()
         y = quickselect_iterative(temp_array, 0, len(temp_array)-1, (3*len(temp_array)//4))
         b = time.time()
-        print("quickselect iterative took: " + str(b - a) + " seconds")
+        iterative_times.append((b-a)*1000)
+        print("quickselect iterative took: " + str((b - a)*1000) + " ms")
         a = time.time()
         z = linear_select(temp_array, (3*len(temp_array))//4)
         b = time.time()
-        print("MM approach took: " + str(b - a) + " seconds")
+        mm_times.append((b-a)*1000)
+        print("MM approach took: " + str((b - a)*1000) + " ms")
         a = time.time()
         x = mergesort(temp_array)[(3*len(temp_array))//4]
         b = time.time()
-        print("Mergesort approach took: " + str(b - a) + " seconds")
+        sort_times.append((b-a)*1000)
+        print("Mergesort approach took: " + str((b - a)*1000) + " ms")
         print("")
 
         if x != y or y != z:
@@ -218,17 +244,31 @@ if __name__ == '__main__':
         a = time.time()
         y = quickselect_recursive(temp_array, 0, len(temp_array)-1, len(temp_array) - 1)
         b = time.time()
-        print("quickselect_recursive took: " + str(b - a) + " seconds")
+        recursive_times.append((b-a)*1000)
+        print("quickselect_recursive took: " + str((b - a)*1000) + " ms")
         a = time.time()
         y = quickselect_iterative(temp_array, 0, len(temp_array)-1, len(temp_array) - 1)
         b = time.time()
-        print("quickselect iterative took: " + str(b - a) + " seconds")
+        iterative_times.append((b-a)*1000)
+        print("quickselect iterative took: " + str((b - a)*1000) + " ms")
         a = time.time()
         z = linear_select(temp_array, len(temp_array) - 1)
         b = time.time()
-        print("MM approach took: " + str(b - a) + " seconds")
+        mm_times.append((b-a)*1000)
+        print("MM approach took: " + str((b - a)*1000) + " ms")
         a = time.time()
         x = mergesort(temp_array)[len(temp_array) - 1]
         b = time.time()
-        print("Mergesort approach took: " + str(b - a) + " seconds")
+        sort_times.append((b-a)*1000)
+        print("Mergesort approach took: " + str((b - a)*1000) + " ms")
         print("")
+
+        recursive_avg.append((i, sum(recursive_times)/len(recursive_times)))
+        iterative_avg.append((i, sum(iterative_times)/len(iterative_times)))
+        mm_avg.append((i, sum(mm_times)/len(mm_times)))
+        sort_avg.append((i, sum(sort_times)/len(sort_times)))
+
+    print(recursive_avg)
+    print(iterative_avg)
+    print(mm_avg)
+    print(sort_avg)
