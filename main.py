@@ -112,6 +112,27 @@ def partition2(arr, left, right, pivot_index):
     return store_index
 
 
+def linear_select(arr, k):
+    if len(arr) <= 5:
+        return mergesort(arr)[k]
+    else:
+        medians = []
+        divided = [arr[i:i+5] for i in range(0, len(arr), 5)]  # Divide arr into groups of 5
+        for i in divided:
+            sorteded = mergesort(i)
+            medians.append(sorteded[len(sorteded)//2])
+        median_of_medians = linear_select(medians, math.floor(len(medians) / 2))
+        val = arr.index(median_of_medians)
+        t = partition2(arr, 0, len(arr) - 1, val)
+        if k == t:
+            return arr[k]
+        elif k < t:
+            return linear_select(arr[:t], k)
+        else:
+            return linear_select(arr[t+1:], k - t - 1)
+    #return medians
+
+
 def quickselect(arr, left, right, k):
     if left == right:
         return arr[left]
@@ -136,9 +157,13 @@ def quickselect(arr, left, right, k):
 
 
 if __name__ == '__main__':
-    test = [54, 26, 93, 17, 77, 31, 44, 55, 20]
+    test = [54, 26, 93, 17, 77, 31, 44, 55, 20, 3]
+    t = [4, 3, 2, 1]
+    print(linear_select(test, 4))
+    print(quickselect(test, 0, len(test)-1, 4))
+    print(mergesort(test)[4])
     #print('posit: ' + str(partition(test, 0, len(test)-1)))
     #print(test)
-    print('THE KTH ELEMENT IS' + str(quickselect(test, 0, len(test)-1, 0)))
+    #print('THE KTH ELEMENT IS' + str(quickselect(test, 0, len(test)-1, 0)))
     #print(quickselect(alist, 2))
-    print('\n\nsorted: ' + str(mergesort(test)))
+    #print('\n\nsorted: ' + str(mergesort(test)))
